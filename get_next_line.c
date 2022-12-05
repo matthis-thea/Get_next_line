@@ -6,7 +6,7 @@
 /*   By: mthea <mthea@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 15:46:28 by mthea             #+#    #+#             */
-/*   Updated: 2022/12/03 18:13:50 by mthea            ###   ########.fr       */
+/*   Updated: 2022/12/05 01:23:18 by mthea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*reading_file(int fd, char *old_string)
 	int		number;
 
 	number = 1;
-	buffer = calloc((BUFFER_SIZE + 1), sizeof(char));
+	buffer = ft_calloc((BUFFER_SIZE + 1), sizeof(char));
 	if (!buffer)
 	{
 		if (old_string)
@@ -30,6 +30,7 @@ char	*reading_file(int fd, char *old_string)
 		number = read(fd, buffer, BUFFER_SIZE);
 		if (number == -1)
 		{
+			free(old_string);
 			free(buffer);
 			return (NULL);
 		}
@@ -53,7 +54,7 @@ char	*ft_strcopy_new(char *s)
 		i++;
 	if (s[i] == '\0')
 		i--;
-	new_string = (char *) malloc((i + 2) * sizeof(char));
+	new_string = ft_calloc((i + 2), sizeof(char));
 	if (!new_string)
 		return (NULL);
 	i = 0;
@@ -73,24 +74,25 @@ char	*ft_clear_old(char *s)
 	int		end;
 
 	start = 0;
+	while (s[start] != '\n' && s[start])
+		start++;
 	if (!s[0])
 	{
 		free(s);
 		return (NULL);
 	}
-	while (s[start] != '\n' && s[start])
-		start++;
 	if (s[start] != '\0')
 		start++;
-	end = ft_strlen(s) - start;
-	new_string = calloc(sizeof(char), (end + 1));
-	if (new_string == NULL)
+	new_string = ft_calloc(ft_strlen(s) - start + 1, sizeof(char));
+	if (!new_string)
+	{
+		free(s);
 		return (NULL);
+	}
 	end = start;
 	start = 0;
 	while (s[end] && s)
 		new_string[start++] = s[end++];
-	new_string[start] = '\0';
 	free(s);
 	return (new_string);
 }
@@ -108,12 +110,4 @@ char	*get_next_line(int fd)
 	new_string = ft_strcopy_new(old_string);
 	old_string = ft_clear_old(old_string);
 	return (new_string);
-}
-
-int main(void)
-{
-	int	fd = open("test", O_RDONLY);
-  if (fd == -1)
-   return 1;
-   
 }

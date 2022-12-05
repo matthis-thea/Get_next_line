@@ -6,7 +6,7 @@
 /*   By: mthea <mthea@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 10:11:03 by mthea             #+#    #+#             */
-/*   Updated: 2022/12/03 15:58:38 by mthea            ###   ########.fr       */
+/*   Updated: 2022/12/05 01:21:57 by mthea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,12 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	if (!s1)
 	{
-		s1 = calloc(1, sizeof(char));
+		s1 = ft_calloc(1, sizeof(char));
 		if (!s1)
 			return (NULL);
 	}
-	if (!s1 && !s2)
-		return (NULL);
-	s = calloc((ft_strlen(s1) + ft_strlen(s2) + 1), sizeof(char));
-	if (!s)
+	s = ft_calloc((ft_strlen(s1) + ft_strlen(s2) + 1), sizeof(char));
+	if (!s || !s1 || !s2)
 		return (NULL);
 	j = 0;
 	i = 0;
@@ -74,7 +72,7 @@ void	ft_bzero(void *s, size_t n)
 	size_t			i;
 	char			*chaine;
 
-	chaine = s;
+	chaine = (char *)s;
 	i = 0;
 	while (i < n)
 	{
@@ -87,9 +85,9 @@ void	*ft_calloc(size_t count, size_t size)
 {
 	void	*pointeur;
 
-	pointeur = (void *) malloc(count * size);
+	pointeur = (void *)malloc(size * count);
 	if (!pointeur)
 		return (NULL);
-	ft_bzero(pointeur, (count * size));
+	ft_bzero(pointeur, (size * count));
 	return (pointeur);
 }

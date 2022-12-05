@@ -6,7 +6,7 @@
 /*   By: mthea <mthea@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 10:10:47 by mthea             #+#    #+#             */
-/*   Updated: 2022/12/03 18:23:59 by mthea            ###   ########.fr       */
+/*   Updated: 2022/12/03 16:26:47 by mthea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,6 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <stdio.h>
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE (10)
 # endif
