@@ -6,13 +6,13 @@
 /*   By: mthea <mthea@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 01:41:35 by mthea             #+#    #+#             */
-/*   Updated: 2022/12/05 01:48:50 by mthea            ###   ########.fr       */
+/*   Updated: 2022/12/05 11:05:34 by mthea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-char	*reading_file(int fd, char *old_string)
+char	*ft_reading_file(int fd, char *old_string)
 {
 	char	*buffer;
 	int		number;
@@ -101,7 +101,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	old_string[fd] = reading_file(fd, old_string[fd]);
+	old_string[fd] = ft_reading_file(fd, old_string[fd]);
 	if (!old_string[fd])
 		return (NULL);
 	new_string = ft_strcopy_new(old_string[fd]);

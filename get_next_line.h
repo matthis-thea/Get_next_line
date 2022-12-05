@@ -6,7 +6,7 @@
 /*   By: mthea <mthea@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 10:10:47 by mthea             #+#    #+#             */
-/*   Updated: 2022/12/03 16:26:47 by mthea            ###   ########.fr       */
+/*   Updated: 2022/12/05 11:06:47 by mthea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # endif
 
 char	*get_next_line(int fd);
-char	*ft_reading_file(int fd);
+char	*ft_reading_file(int fd, char *old_string);
 char	*ft_strcopy_new(char *s);
 char	*ft_clear_old(char *s);
 int		ft_comp(char *s, char c);
