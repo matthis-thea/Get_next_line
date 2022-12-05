@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mthea <mthea@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/03 15:46:28 by mthea             #+#    #+#             */
-/*   Updated: 2022/12/05 01:48:03 by mthea            ###   ########.fr       */
+/*   Created: 2022/12/05 01:41:35 by mthea             #+#    #+#             */
+/*   Updated: 2022/12/05 01:48:50 by mthea            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*reading_file(int fd, char *old_string)
 {
@@ -96,15 +96,15 @@ char	*ft_clear_old(char *s)
 
 char	*get_next_line(int fd)
 {
-	static char	*old_string;
+	static char	*old_string[4096];
 	char		*new_string;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	old_string = reading_file(fd, old_string);
-	if (!old_string)
+	old_string[fd] = reading_file(fd, old_string[fd]);
+	if (!old_string[fd])
 		return (NULL);
-	new_string = ft_strcopy_new(old_string);
-	old_string = ft_clear_old(old_string);
+	new_string = ft_strcopy_new(old_string[fd]);
+	old_string[fd] = ft_clear_old(old_string[fd]);
 	return (new_string);
 }
